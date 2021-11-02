@@ -119,3 +119,86 @@
   doi       = "10.1038/nature07140"
 }
 
+@InProceedings{Arribas2020a,
+  author    = {Diego M. Arribas and Yuan Zhao and Il Memming Park},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  title     = {Rescuing neural spike train models from bad {MLE}},
+  abstract      = "The standard approach to fitting an autoregressive spike
+                   train model is to maximize the likelihood for one-step
+                   prediction. This maximum likelihood estimation (MLE) often
+                   leads to models that perform poorly when generating samples
+                   recursively for more than one time step. Moreover, the
+                   generated spike trains can fail to capture important
+                   features of the data and even show diverging firing rates.
+                   To alleviate this, we propose to directly minimize the
+                   divergence between neural recorded and model generated spike
+                   trains using spike train kernels. We develop a method that
+                   stochastically optimizes the maximum mean discrepancy
+                   induced by the kernel. Experiments performed on both real
+                   and synthetic neural data validate the proposed approach,
+                   showing that it leads to well-behaving models. Using
+                   different combinations of spike train kernels, we show that
+                   we can control the trade-off between different features
+                   which is critical for dealing with model-mismatch.",
+  month         =  oct,
+  year          =  2020,
+  archivePrefix = "arXiv",
+  eprint        = "2010.12362",
+  primaryClass  = "stat.ML",
+  arxivid       = "2010.12362",
+  code		= {https://github.com/catniplab/mmd-glm},
+}
+
+@Article{Park2014d,
+  author               = {Park, Il Memming and Meister, Miriam L. R. and Huk, Alexander C. and Pillow, Jonathan W.},
+  title                = {Encoding and decoding in parietal cortex during sensorimotor decision-making},
+  journal              = {Nature Neuroscience},
+  year                 = {2014},
+  volume               = {17},
+  number               = {10},
+  pages                = {1395--1403},
+  month                = oct,
+  issn                 = {1097-6256},
+  citeulike-article-id = {13342234},
+  citeulike-linkout-0  = {http://dx.doi.org/10.1038/nn.3800},
+  doi                  = {10.1038/nn.3800},
+  pdf       = {Park2014d_typofixed.pdf},
+  keywords             = {computational-neuroscience, decision-making, glm, lip, monkey, neural-code, neural-decoding},
+  posted-at            = {2014-08-31 22:37:11},
+}
+
+@Unpublished{Dowling2020a,
+  author        = {Dowling, Matthew and Zhao, Yuan and Park, Il Memming},
+  title         = {Non-parametric generalized linear model},
+  month         = sep,
+  year          = {2020},
+  abstract      = {A fundamental problem in statistical neuroscience is to
+                   model how neurons encode information by analyzing
+                   electrophysiological recordings. A popular and widely-used
+                   approach is to fit the spike trains with an autoregressive
+                   point process model. These models are characterized by a set
+                   of convolutional temporal filters, whose subsequent analysis
+                   can help reveal how neurons encode stimuli, interact with
+                   each other, and process information. In practice a
+                   sufficiently rich but small ensemble of temporal basis
+                   functions needs to be chosen to parameterize the filters.
+                   However, obtaining a satisfactory fit often requires
+                   burdensome model selection and fine tuning the form of the
+                   basis functions and their temporal span. In this paper we
+                   propose a nonparametric approach for jointly inferring the
+                   filters and hyperparameters using the Gaussian process
+                   framework. Our method is computationally efficient taking
+                   advantage of the sparse variational approximation while
+                   being flexible and rich enough to characterize arbitrary
+                   filters in continuous time lag. Moreover, our method
+                   automatically learns the temporal span of the filter. For
+                   the particular application in neuroscience, we designed
+                   priors for stimulus and history filters useful for the spike
+                   trains. We compare and validate our method on simulated and
+                   real neural spike train data.},
+  archiveprefix = {arXiv},
+  arxivid       = {2009.01362},
+  eprint        = {2009.01362},
+  primaryclass  = {stat.ML},
+}
+
