@@ -23,7 +23,8 @@
 \newcommand{\iid}{{\it i.i.d.}\xspace}
 \newcommand{\iidsample}{\stackrel{iid}{\sim}}
 \newcommand{\normalDist}{\mathcal{N}}
-\newcommand{\homework}{\textcolor{violet}{\textbf{Homework:}~}}
+\newcounter{homework}
+\newcommand{\homework}{\stepcounter{homework}\textcolor{violet}{\textbf{Homework \thehomework:}~}}
 \newcommand{\funfact}{\textbf{Fun Fact:}~}
 
 \pagestyle{headandfoot}
@@ -499,6 +500,10 @@ In MATLAB, you can use \texttt{glmfit} and \texttt{glmval} to perform MLE-based 
 \lstinputlisting[style=Matlab-Pyglike,basicstyle=\mlttfamily]{code/worksheet_GLM.m}
 
 Note the logarithm is chosen as the ``link function''. This corresponds to the exponential inverse link function in~\eqref{eq:GLM} and~\eqref{eq:GLM2}.
+
+\question \homework Following code simulates from a GLM. Use \texttt{glmfit} to estimate the parameters.
+
+\lstinputlisting[style=Matlab-Pyglike,basicstyle=\mlttfamily]{code/worksheet_simGLM.m}
 
 \newpage
 \question (Bonus prep for next lecture) Let $\mathcal{I} = {1, 2, \ldots, n}$ be time indices. The \textbf{covariance matrix} $\Sigma$ is an $n \times n$ real-valued matrix, where each entry is given as $\Sigma_{i,j} = \cov(X_i, X_j)$ for $i, j \in \mathcal{I}$.
