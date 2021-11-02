@@ -29,7 +29,7 @@
 
 \pagestyle{headandfoot}
 \runningheadrule
-\runningheader{}{Temporal Structure in Neural Data}{Il Memming Park}
+\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
 
 \begin{document}
 \vspace{-5mm}
@@ -88,17 +88,17 @@ This vector will have a value of 1 for the time windows that contains an action 
 This second representation is useful in MATLAB, and called the \emph{binned spike train} in general.
 Note that if $\Delta$ is large, there may be more than 1 action potential in the time window, in which case, we store the the number of action potentials in the vector.
 
-\question To characterize the relationship between the stimulus (input) and the spiking response of a neuron (output), we can use \textbf{spike-triggered-average (STA)}:
+\question To characterize the relationship between the stimulus (input) and the spiking response of a neuron (output), we can use the \textbf{spike-triggered-average (STA)}:
 \begin{tcolorbox}[colback=red!5!white,colframe=red!50!black]
 \noindent
 \begin{equation}\label{eq:sta}
     \text{STA}(\tau) = \frac{1}{N} \sum_t y_{t} x_{t-\tau}
 \end{equation}
 \end{tcolorbox}
-where $x_t$ is the stimulus, and $y_t$ is the binned spike train.
+where $x_t$ is the stimulus, $y_t$ is the binned spike train, and $N$ is the total number of spikes.
 STA is the average stimulus conditioned on each of the spiking events (non-zero $y_t$).
 Larger $\tau$ represents times farther past relative to the triggering spike.
-Evaluate the \emph{expected} STA and sketch them for the following neuron models with indepedently random stimulus $x_t$ where $x_t = -1$ with probability $1/2$ and $x_t = 1$ with probability $1/2$.
+Evaluate the \emph{expected} STA\cite{Dayan2001}, $\E[\sum_t y_{t} x_{t-\tau}]/\E[N]$ and sketch them for the following neuron models with indepedently random stimulus $x_t$ where $x_t = -1$ with probability $1/2$ and $x_t = 1$ with probability $1/2$.
 \begin{parts}
     \part
     \begin{equation}
