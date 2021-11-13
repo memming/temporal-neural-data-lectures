@@ -399,7 +399,7 @@ Specifically, for such processes, the Fourier transform of the autocovariance fu
 	\end{bmatrix}
     \end{align}
 \end{tcolorbox}
-    \part \homework In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable. Use MATLAB function \texttt{eig} to obtain eigenvalues of a matrix.
+    \part \label{hw:ar2_sim} \homework In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable. Use MATLAB function \texttt{eig} to obtain eigenvalues of a matrix.
     %(These eigenvalues are usually called the roots of the characteristic polynomial in the field of signal processing.)
     Construct a stable AR(2) model by choosing parameters and generate time series of length $T=100,000$. Plot the sample autocorrelation function and estimated power spectral density.
     \part Another way of writing the AR(2) as matrix equations is,
@@ -442,7 +442,7 @@ Specifically, for such processes, the Fourier transform of the autocovariance fu
 \newpage
     \part \homework
     Note that above form~\eqref{eq:lsar} is a least squares regression.
-    Using the data from Homework 5, estimate the coefficients for the autoregressive model using least squares regression (use the \texttt{/} or \texttt{\textbackslash} command in MATLAB or \texttt{glmfit}).
+    Using the data from question (\ref{hw:ar2_sim}), estimate the coefficients for the autoregressive model using least squares regression (use the \texttt{/} or \texttt{\textbackslash} command in MATLAB or \texttt{glmfit}).
     Compare the result with the true model parameters.
     \vspace{\stretch{1}}
     \part \homework (optional) A better way of estimating AR model is to use MATLAB functions in the signal processing toolbox: \texttt{aryule, arcov, arberg}. Use each method and compare the result with the true model parameters.
