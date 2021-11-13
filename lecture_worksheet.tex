@@ -86,7 +86,7 @@ Assuming a fixed sampling period $\Delta$, the second representation is as a vec
 Each element of the vector represents a time period, that is $y_t$ corresponds to the time window $[t\Delta, (t+1)\Delta)$.
 This vector will have a value of 1 for the time windows that contains an action potential, and 0 for the absence (see illustration above).
 This second representation is useful in MATLAB, and called the \emph{binned spike train} in general.
-Note that if $\Delta$ is large, there may be more than 1 action potential in the time window, in which case, we store the the number of action potentials in the vector.
+Note that if $\Delta$ is large, there may be more than 1 action potential in the time window, in which case, we store the number of action potentials in the vector.
 
 \question To characterize the relationship between the stimulus (input) and the spiking response of a neuron (output), we can use the \textbf{spike-triggered-average (STA)}:
 \begin{tcolorbox}[colback=red!5!white,colframe=red!50!black]
@@ -98,7 +98,7 @@ Note that if $\Delta$ is large, there may be more than 1 action potential in the
 where $x_t$ is the stimulus, $y_t$ is the binned spike train, and $N$ is the total number of spikes.
 STA is the average stimulus conditioned on each of the spiking events (non-zero $y_t$).
 Larger $\tau$ represents times farther past relative to the triggering spike.
-Evaluate the \emph{expected} STA (discussed in~\citet{Dayan2001}), $\E[\sum_t y_{t} x_{t-\tau}]/\E[N]$ and sketch them for the following neuron models with indepedently random stimulus $x_t$ where $x_t = -1$ with probability $1/2$ and $x_t = 1$ with probability $1/2$.
+Evaluate the \emph{expected} STA (discussed in~\citet{Dayan2001}), $\E[\sum_t y_{t} x_{t-\tau}]/\E[N]$ and sketch them for the following neuron models with independently random stimulus $x_t$ where $x_t = -1$ with probability $1/2$ and $x_t = 1$ with probability $1/2$.
 \begin{parts}
     \part
     \begin{equation}
@@ -137,7 +137,7 @@ Evaluate the \emph{expected} STA (discussed in~\citet{Dayan2001}), $\E[\sum_t y_
     \funfact STA does not work for an arbitrary stimulus distribution, but it works for white gaussian noise and other elliptically symmetric distributions~\cite{Paninski2003,Park2013f}.
 \end{tcolorbox}
 We will be analyzing fly visual neuron data from \citet{De_Ruyter_van_Steveninck1997}.
-In particular, spikes from the H1 neuron in reponse ($y_t$) to visual motion velocity input ($x_t$) is provided to you.
+In particular, spikes from the H1 neuron in response ($y_t$) to visual motion velocity input ($x_t$) is provided to you.
 
 \question \homework Load the H1 dataset, compute the STA, and plot it.
 \textbf{(Instruction: combine all homework answers and submit a single PDF.)}
@@ -254,7 +254,7 @@ Try the following MATLAB code:
 
 \newpage
 \question
-From the same H1 dataset, compute the sample autocorrelation function (normalized to correlation coefficients) of the spike train using \texttt{xcorr}. We get the followingn typical shape.
+From the same H1 dataset, compute the sample autocorrelation function (normalized to correlation coefficients) of the spike train using \texttt{xcorr}. We get the following typical shape.
 \begin{center}
 \includegraphics[width=0.7\textwidth]{ac_y}
 \end{center}
@@ -490,8 +490,8 @@ Do you have other task variables and external stimuli that may drive the neuron 
 \end{equation}
 where $K$ covariate time series $x^k_t$ are introduced with maximum $q_k-1$ time lags.
 \end{tcolorbox}
-How do we fit the paprameters of a GLM given spike trains and covariates?
-Among many potential estimators, one of the most popular and pricipled estimator is the maximum likelihood estimator (MLE).
+How do we fit the parameters of a GLM given spike trains and covariates?
+Among many potential estimators, one of the most popular and principled estimator is the maximum likelihood estimator (MLE).
 In most cases, MLE is \emph{statistically efficient}, that is, the variance of the estimator decays at the fastest possible rate as a function of sample size.
 Also, this particular form of MLE has a unique optimal solution, but it may not be the best solution for simulating from the GLM\cite{Arribas2020a}.
 
