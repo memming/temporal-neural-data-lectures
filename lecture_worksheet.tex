@@ -29,7 +29,8 @@
 
 \pagestyle{headandfoot}
 \runningheadrule
-\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
+%\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
+\runningheader{INDP 2022}{Temporal Structure in Neural Data}{Il Memming Park}
 
 \begin{document}
 \vspace{-5mm}
@@ -39,8 +40,8 @@
 }
 \end{center}
 
-In this introductory worksheet, we will deal with discrete time series $x_t$ defined on discrete time indices $t = 0, 1, \ldots$, assuming a periodic sampling scheme.
-For example, for voltage measured at \SI{1}{\kilo\hertz} sampling rate, $x_1$ denotes the voltage measured $\Delta = 1/1000 = \SI{1}{\milli\second}$ after $x_0$.
+In this worksheet, we will deal with discrete time series $x_t$ defined on discrete time indices $t = 0, 1, \ldots$, assuming a periodic sampling scheme.
+For example, for voltage measured at \SI{1}{\kilo\hertz} sampling rate, $x_1$ would denote the voltage measured $\Delta = 1/1000~\unit{\second} = \SI{1}{\milli\second}$ after $x_0$.
 For spike trains, sampling interval of \SI{0.1}{\milli\second} to \SI{1}{\milli\second} range are typically used.
 
 \begin{questions}
@@ -82,7 +83,7 @@ where $a$ is a constant.
 For a spiking neuron, the neural response is a spike train for which we have two notations to represent them.
 Let's consider a time window of $[0, T]$.
 First, as an ordered sequence of time points of action potentials, $(0 < t_1 < t_2 < \ldots < t_N < T)$ where there are $N$ action potentials.
-Assuming a fixed sampling period $\Delta$, the second representation is as a vector of length $\lceil\frac{T}{\Delta}\rceil$.
+Assuming a fixed sampling period $\Delta$, the second representation is a vector of length $\lceil\frac{T}{\Delta}\rceil$.
 Each element of the vector represents a time period, that is $y_t$ corresponds to the time window $[t\Delta, (t+1)\Delta)$.
 This vector will have a value of 1 for the time windows that contains an action potential, and 0 for the absence (see illustration above).
 This second representation is useful in MATLAB, and called the \emph{binned spike train} in general.
