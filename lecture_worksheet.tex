@@ -1,6 +1,9 @@
-\documentclass[letterpaper,11pt]{exam}
+\documentclass[a4paper,11pt]{exam}
 
-\usepackage[T1]{fontenc}
+\newif\ifMATLAB % <-- defines \MATLABtrue and \MATLABfalse
+\MATLABtrue     % <-- set \MATLABfalse if we are in Python mode
+
+%\usepackage[T1]{fontenc}
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
 \usepackage{amssymb}
 \usepackage[fleqn]{amsmath} % align equations left
@@ -249,9 +252,13 @@ Given $m$ data points over time, we can write an estimator (called the \emph{sam
     \end{cases}
 \end{equation}
 
+\ifMATLAB
 In MATLAB, the function \texttt{xcorr} computes this without the $\frac{1}{m-\tau-1}$ normalization factor by default (called the \emph{raw} cross-correlation). You can provide extra arguments to choose the desired normalization or scale it appropriately to obtain the STA (with possible lag axis flip).
 Try the following MATLAB code:
 \lstinputlisting[style=Matlab-Pyglike,basicstyle=\mlttfamily]{code/worksheet_XC.m}
+\else
+In Python, the function \texttt{scipy.signal.correlate} or some other magic function does the job.
+\fi
 
 \newpage
 \question
@@ -283,7 +290,7 @@ A stationary, finite variance time series can be thought of as the random superp
 Specifically, for such processes, the Fourier transform of the autocovariance function is called the \textbf{power spectral density}, and it captures how much power is captured by each frequency.
 \begin{tcolorbox}
     \funfact $e^{2\pi i \omega} = \cos(2\pi\omega) + i \sin(2\pi\omega)$
-    (Euler's formula)
+    \qquad (Euler's formula)
     %$a^n = e^{\ln(a)\cdot n}$.
 \end{tcolorbox}
 \begin{tcolorbox}
