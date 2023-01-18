@@ -17,6 +17,10 @@
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.mps,.eps,.ps}
 \graphicspath{{figs/}}
 
+% use non-numerical footnote symbols
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
 \usepackage[numbers,sort&compress,super,comma]{natbib}
 \usepackage[framed,numbered]{matlab-prettifier}
 
@@ -39,13 +43,13 @@
 %\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
 \runningheader{INDP 2022}{Temporal Structure in Neural Data}{Il Memming Park}
 
-\title{Introduction to temporal structure in neural data\footnote{Available online: \url{https://github.com/memming/temporal-neural-data-lectures}}}
+\title{Introduction to temporal structure in neural data}
 \author{Il Memming Park, \'Abel S\'agodi}
 
 \begin{document}
 \maketitle
 
-In this worksheet, we will deal with discrete time series $x_t$ defined on discrete time indices $t = 0, 1, \ldots$, assuming a periodic sampling scheme.
+In this worksheet\footnote{Available online: \url{https://github.com/memming/temporal-neural-data-lectures}}, we will deal with discrete time series $x_t$ defined on discrete time indices $t = 0, 1, \ldots$, assuming a periodic sampling scheme.
 For example, for voltage measured at \SI{1}{\kilo\hertz} sampling rate, $x_1$ would denote the voltage measured $\Delta = 1/1000~\unit{\second} = \SI{1}{\milli\second}$ after $x_0$.
 For spike trains, sampling interval of \SI{0.1}{\milli\second} to \SI{1}{\milli\second} range are typically used.
 
@@ -568,7 +572,7 @@ Note natural logarithm is chosen as the ``link function''. This corresponds to t
 
 
 \newpage
-\question (Bonus prep for next lecture) Let $\mathcal{I} = {1, 2, \ldots, n}$ be time indices. The \textbf{covariance matrix} $\Sigma$ is an $n \times n$ real-valued matrix, where each entry is given as $\Sigma_{i,j} = \cov(X_i, X_j)$ for $i, j \in \mathcal{I}$.
+\question Let $\mathcal{I} = {1, 2, \ldots, n}$ be time indices. The \textbf{covariance matrix} $\Sigma$ is an $n \times n$ real-valued matrix, where each entry is given as $\Sigma_{i,j} = \cov(X_i, X_j)$ for $i, j \in \mathcal{I}$.
 \begin{parts}
     \part What are the diagonal entries of $\Sigma$? What would they be if the process is stationary?
     \vspace{\stretch{2}}
