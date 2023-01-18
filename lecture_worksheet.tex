@@ -481,7 +481,6 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 	\end{bmatrix}
     \end{align}
     \vspace{\stretch{3}}
-\newpage
     \part \homework
     Note that above form~\eqref{eq:lsar} is a least squares regression.
     Using the data from question (\ref{hw:ar2_sim}), estimate the coefficients for the autoregressive model using least squares regression
@@ -499,7 +498,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 \fi
 \end{parts}
 
-Note that this is also a \textbf{generalized linear model (GLM)} with Gaussian observation noise.
+Note that this is also a \textbf{generalized linear model (GLM)\footnote{not to be confused with \emph{general} linear model!}} with Gaussian observation noise.
 However, with Gaussian observation noise, we won't get spikes, hence not great for action potentials over time.
 To model noisy spiking patterns (a.k.a. point process observations), we can still use GLM but with a Poisson observation noise.
 \begin{tcolorbox}[colback=red!5!white,colframe=red!50!black,title=Autoregressive Point Process (a.k.a. Poisson-GLM)]
@@ -510,7 +509,6 @@ To model noisy spiking patterns (a.k.a. point process observations), we can stil
 \end{tcolorbox}
 Note the similarity between this GLM formulation (autoregressive point process) and the AR(p) model.
 
-\newpage
 \question Consider the GLM in~\eqref{eq:GLM}.
 The autoregressive weights $h_\tau$ are called the \emph{history filter} since they dictate how the spiking history impacts the probability of firing now.
 \begin{parts}
@@ -556,17 +554,15 @@ In Python, you can use \texttt{statsmodels.api.GLM} to perform MLE-based Poisson
 \inputpython{code/worksheet_GLM.py}{1}{10}
 \fi
 
-Note the logarithm is chosen as the ``link function''. This corresponds to the exponential inverse link function in~\eqref{eq:GLM} and~\eqref{eq:GLM2}.
+Note natural logarithm is chosen as the ``link function''. This corresponds to the exponential inverse link function in~\eqref{eq:GLM} and~\eqref{eq:GLM2}.
 
-\question \homework Following code simulates from a GLM. 
+\question \homework Following code simulates from an autoregressive Poisson-GLM.
 \ifMATLAB
-
-Use \texttt{glmfit} to estimate the parameters.
-\lstinputlisting[style=Matlab-Pyglike,basicstyle=\mlttfamily]{code/worksheet_simGLM.m}
+    Use \texttt{glmfit} to estimate the parameters.
+    \lstinputlisting[style=Matlab-Pyglike,basicstyle=\mlttfamily]{code/worksheet_simGLM.m}
 \else
-Use \texttt{statsmodels.api.GLM} to estimate the parameters.
-
-\inputpython{code/worksheet_simGLM.py}{1}{10}
+    Use \texttt{statsmodels.api.GLM} to estimate the parameters.
+    \inputpython{code/worksheet_simGLM.py}{1}{10}
 \fi
 
 
@@ -591,20 +587,21 @@ Use \texttt{statsmodels.api.GLM} to estimate the parameters.
 	\end{bmatrix}
     \end{equation}
     Additionally assume that the observed time series $\mathbf{X}$ has \underline{zero mean}.
-    Show that the (biased) \textbf{sample covariance matrix} is given by
+    Show that the following estimates the covariance matrix:
     \begin{equation}\label{eq:sample:outer}
 	\hat{\Sigma} = \frac{1}{T-n} \mathbf{X}\mathbf{X}^\top
+	\qquad \text{(sample covariance matrix)}
     \end{equation}
     where $(\cdot)^\top$ denotes the \textit{transpose} operation.
 
 	\begin{tcolorbox}
-	    Recall the (biased) sample covariance estimator for $\{(X_i, Y_i)\}_{i=1}^{N}$ is,
+	    Recall a popular (biased but consistent) sample covariance estimator for $\{(X_i, Y_i)\}_{i=1}^{N}$:
 	\begin{equation}\label{eq:cov:est}
 	\cov(X, Y) \approx \frac{1}{N}\sum_i 
-	\left(
-	    (X_i - \frac{1}{N}\sum_j X_j)
-	    (Y_i - \frac{1}{N}\sum_k Y_k)
-	\right)
+	    \left(X_i - \frac{1}{N}\sum_j X_j
+		\right)
+	    \left(Y_i - \frac{1}{N}\sum_k Y_k
+		\right)
 	\end{equation}
 	\end{tcolorbox}
     \vspace{\stretch{2}}
