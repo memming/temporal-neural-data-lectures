@@ -7,6 +7,7 @@
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
 \usepackage{amssymb}
 \usepackage[fleqn]{amsmath} % align equations left
+\usepackage{hyperref}
 \usepackage{tcolorbox}
 \usepackage{xcolor}
 \usepackage{xspace}
@@ -38,13 +39,11 @@
 %\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
 \runningheader{INDP 2022}{Temporal Structure in Neural Data}{Il Memming Park}
 
+\title{Introduction to temporal structure in neural data\footnote{Available online: \url{https://github.com/memming/temporal-neural-data-lectures}}}
+\author{Il Memming Park, \'Abel S\'agodi}
+
 \begin{document}
-\vspace{-5mm}
-\begin{center}
-\textbf{\large
-    Introduction to temporal structure in neural data
-}
-\end{center}
+\maketitle
 
 In this worksheet, we will deal with discrete time series $x_t$ defined on discrete time indices $t = 0, 1, \ldots$, assuming a periodic sampling scheme.
 For example, for voltage measured at \SI{1}{\kilo\hertz} sampling rate, $x_1$ would denote the voltage measured $\Delta = 1/1000~\unit{\second} = \SI{1}{\milli\second}$ after $x_0$.
