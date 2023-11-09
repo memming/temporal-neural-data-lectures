@@ -41,7 +41,7 @@
 \pagestyle{headandfoot}
 \runningheadrule
 %\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
-\runningheader{INDP 2022}{Temporal Structure in Neural Data}{Il Memming Park}
+\runningheader{INDP 2023}{Temporal Structure in Neural Data}{Il Memming Park}
 
 \title{Introduction to temporal structure in neural data}
 \author{Il Memming Park, \'Abel S\'agodi}
@@ -502,7 +502,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 \fi
 \end{parts}
 
-Note that this is also a \textbf{generalized linear model (GLM)\footnote{not to be confused with \emph{general} linear model!}} with Gaussian observation noise.
+Note that AR(p) is also a \textbf{generalized linear model (GLM)\footnote{not to be confused with \emph{general} linear model!}} with Gaussian observation noise.
 However, with Gaussian observation noise, we won't get spikes, hence not great for action potentials over time.
 To model noisy spiking patterns (a.k.a. point process observations), we can still use GLM but with a Poisson observation noise.
 \begin{tcolorbox}[colback=red!5!white,colframe=red!50!black,title=Autoregressive Point Process (a.k.a. Poisson-GLM)]
@@ -610,12 +610,59 @@ Note natural logarithm is chosen as the ``link function''. This corresponds to t
 	\end{tcolorbox}
     \vspace{\stretch{2}}
 \end{parts}
+
+\newpage
+\question What if we have two simultaneously observed time series?
+Bivariate autoregressive model is a simple extension of AR(p) that can handle this:
+\begin{align}\label{eq:bar}
+    X_{t} &=
+	\sum_{\tau = 1}^p a_\tau X_{t - \tau} +
+	\sum_{\tau = 1}^p b_\tau Y_{t - \tau} +
+	\eta_{t}
+    \\
+    Y_{t} &=
+	\sum_{\tau = 1}^p c_\tau X_{t - \tau} +
+	\sum_{\tau = 1}^p d_\tau Y_{t - \tau} +
+	\epsilon_{t}
+\end{align}
+where $(X_t, Y_t)$ are zero mean and simultaneously observed, and $\eta_t$ and $\epsilon_s$ are independent for all $t, s$.
+\begin{parts}
+    \part If $b_\tau = 0$ for all $\tau$, $X$ would not depend on $Y$. Does this mean that for all lags $\tau$, the cross-correlation between $X_t$ and $Y_{t+\tau}$ are zero?
+    \vspace{\stretch{1}}
+    \part Consider the following two models of time series $X_t$:
+	\begin{align}
+	    X_{t} &=
+		\sum_{\tau = 1}^p a_\tau X_{t - \tau} +
+		\sum_{\tau = 1}^p b_\tau Y_{t - \tau} +
+		\eta_{t}
+	    \label{eq:granger:bar}
+	    \\
+	    X_{t} &=
+		\sum_{\tau = 1}^p a'_\tau X_{t - \tau} +
+		\eta'_{t}
+	    \label{eq:granger:ar}
+	\end{align}
+	Which model has more free parameters? Which model is more likely to explain more variance of $X_t$?
+    \vspace{\stretch{1}}
+    \part What would your null hypothesis be if you wanted to claim that past of $Y$ has influence on $X$?
+    \vspace{\stretch{1}}
+    \begin{tcolorbox}
+    If \eqref{eq:granger:bar} is significantly better at explaining $X_t$ than \eqref{eq:granger:ar}, we say that $Y$ \textbf{Granger causes} $X$.
+    \end{tcolorbox}
+    \part What is the effect of sampling rate in the interpretation of Granger causality?
+    \vspace{\stretch{2}}
+    \part Discuss the advantanges and disadvantages of Granger causality. When does it fail to reveal the physical causal structure between $X$ and $Y$?
+    \vspace{\stretch{2}}
+    \part Can you extend Granger causality to point processes using GLM? Outline a procedure.
+    \vspace{\stretch{2}}
+    \end{parts}
 \end{questions}
 
 \nocite{Simoncelli2004}
 \nocite{Park2011c}
 \nocite{Arribas2020a}
 \nocite{Dowling2020a}
+\nocite{Stokes2017}
 \bibliographystyle{plainnat}
 \bibliography{refs}
 \end{document}
