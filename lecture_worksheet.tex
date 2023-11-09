@@ -445,7 +445,12 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 	\end{bmatrix}
     \end{align}
 \end{tcolorbox}
-    \part \label{hw:ar2_sim} \homework In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable. Use MATLAB function \texttt{eig} to obtain eigenvalues of a matrix.
+    \part \label{hw:ar2_sim} \homework In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable.
+\ifMATLAB
+ Use MATLAB function \texttt{eig} to obtain eigenvalues of a matrix.
+\else
+ Use Python function \texttt{numpy.linalg.eig} to obtain eigenvalues of a matrix.
+\fi
     %(These eigenvalues are usually called the roots of the characteristic polynomial in the field of signal processing.)
     Construct a stable AR(2) model by choosing parameters and generate time series of length $T=100,000$. Plot the sample autocorrelation function and estimated power spectral density.
     \part Another way of writing the AR(2) as matrix equations is,
