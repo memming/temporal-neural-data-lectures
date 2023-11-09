@@ -2,6 +2,8 @@
 
 \newif\ifMATLAB % <-- defines \MATLABtrue and \MATLABfalse
 \MATLABfalse     % <-- set \MATLABfalse if we are in Python mode
+\newif\ifPSD % <-- power spectrum segment
+\PSDfalse
 
 %\usepackage[T1]{fontenc}
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
@@ -193,7 +195,7 @@ If you are familiar with conductance based models or leaky-integrate-and-fire ne
     \part Let $x_0 = 0$ and $u_t = 0$ for all time except at $t=0$, $u_0 = 1$.
     What's the general expression for $x_t$? Sketch them out for $a = 0.5$ and $a = -0.9$.
     \vspace{\stretch{2}}
-    \part Show that this system is (1) \textit{linear}, i.e., $\system{H}{\beta u_t} = \beta \system{H}{u_t}$, and (2) \textit{time-invariant}, i.e., $x_t = \system{H}{u_{t}} \implies x_{t+\tau} = \system{H}{u_{t+\tau}}$ for any time shift $\tau$. (\textit{Hint: don't think too much.})
+    \part Note that this system is (1) \textit{linear}, i.e., $\system{H}{\beta u_t} = \beta \system{H}{u_t}$, and (2) \textit{time-invariant}, i.e., $x_t = \system{H}{u_{t}} \implies x_{t+\tau} = \system{H}{u_{t+\tau}}$ for any time shift $\tau$.% (\textit{Hint: don't think too much.})
     \vspace{\stretch{1}}
 \end{parts}
 
@@ -235,6 +237,7 @@ In other words, you cannot tell $t$ by looking at the random process, since it's
 \newpage
 STA is almost the same as a more widely used quantity, the \emph{cross-correlation function}, which is not restricted to spike trains.
 \begin{tcolorbox}[colback=red!5!white,colframe=red!50!black]
+    Cross-correlation function:
 \begin{align}
     R_{xy}(t,s) &= \E[x_{t}y_s]
 \end{align}
@@ -282,7 +285,7 @@ In MATLAB, the function \texttt{xcorr} computes this without the $\frac{1}{m-\ta
 Try the following MATLAB code:
 \lstinputlisting[style=Matlab-Pyglike,basicstyle=\mlttfamily]{code/worksheet_XC.m}
 \else
-In Python, the function \texttt{numpy.correlate} or \texttt{scipy.signal.correlate} can compute auto- and cross-correlation funcitons.
+In Python, the function \texttt{numpy.correlate} or \texttt{scipy.signal.correlate} can compute auto- and cross-correlation functions.
 However, it only computes the ``raw'' correlations without the normalization factor.
 Try the following Python code:
 \inputpython{code/worksheet_XC.py}{1}{10}
@@ -313,8 +316,8 @@ From the same H1 dataset, compute the sample autocorrelation function (normalize
     \vspace{\stretch{3}}
 \end{parts}
 
+\ifPSD
 \newpage
-
 \question
 A stationary, finite variance time series can be thought of as the random superposition of sines and cosines oscillating at various frequencies.
 Specifically, for such processes, the Fourier transform of the autocovariance function is called the \textbf{power spectral density}, and it captures how much power is captured by each frequency.
@@ -391,6 +394,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
     \vspace{\stretch{1}}
     \part \homework Estimate and plot the power spectral density of time series generated from two AR(1) models with parameters of your choice.
 \end{parts}
+\fi % PSD
 
 \newpage
 
@@ -527,12 +531,13 @@ The autoregressive weights $h_\tau$ are called the \emph{history filter} since t
     \vspace{\stretch{2}}
     \part What is the log-likelihood of this model?
     \begin{tcolorbox}
-	\funfact For a Poisson random variable $y \sim \text{Poisson}(\Lambda)$, its likelihood is,
+	\funfact For a Poisson random variable $\mathbf{Y} \sim \text{Poisson}(\Lambda)$, its likelihood for $y \in \{0, 1, \ldots \}$ is,
 	\begin{equation}
-	    P(y\mid\Lambda) = 
+	    P(\mathbf{Y} = y \mid \Lambda) = 
 		\frac{\Lambda^y \exp(-\Lambda)}
 		{y!}
 	\end{equation}
+	We omit $\mathbf{Y}$ in our notation when it's obvious from context.
     \end{tcolorbox}
     \vspace{\stretch{4}}
     \part What is the difference in log-likelihood for the homogeneous Poisson model (i.e. GLM with no history filter), and the GLM with $p=1$ if the history filter captured the absolute refractory period per spike? Part of the superior performance of GLMs~\cite{Pillow2008} can be contributed to this.
@@ -656,7 +661,7 @@ where $(X_t, Y_t)$ are zero mean and simultaneously observed, and $\eta_t$ and $
     \end{tcolorbox}
     \part What is the effect of sampling rate in the interpretation of Granger causality?
     \vspace{\stretch{2}}
-    \part Discuss the advantanges and disadvantages of Granger causality. When does it fail to reveal the physical causal structure between $X$ and $Y$?
+    \part Discuss the advantages and disadvantages of Granger causality. When does it fail to reveal the physical causal structure between $X$ and $Y$?
     \vspace{\stretch{2}}
     \part Can you extend Granger causality to point processes using GLM? Outline a procedure.
     \vspace{\stretch{2}}
