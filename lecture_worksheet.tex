@@ -6,7 +6,7 @@
 \PSDtrue
 
 %\usepackage[T1]{fontenc}
-\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
 \usepackage{amssymb}
 \usepackage[fleqn]{amsmath} % align equations left
 \usepackage{hyperref}
@@ -400,8 +400,6 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 \end{parts}
 \fi % PSD
 
-\newpage
-
 \begin{tcolorbox}
     A general order $p$ autoregressive model is,
     \begin{equation}
@@ -455,19 +453,23 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 \end{tcolorbox}
     \part In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable. What are the eigenvalues for the AR(2)?
     \vspace{\stretch{0.5}}
+    \part Generalize the matrix form representation for AR(p):
+    \vspace{\stretch{1}}
     \part Show that thanks to the special structure of $\mathbf{A}$, roots of the characteristic polynomial for AR(p), is
 \begin{align}
 	\det ({\mathbf{A} - \lambda\identity}) &= \lambda^p - a_1 \lambda^{p-1} - \cdots - a_p = 0
 \end{align}
     \vspace{\stretch{0.5}}
-    \part When the eigenvalues are complex-valued, they come in conjugate pairs.
-	The power spectral density has the form:
-\begin{align}
+    \part For the general AR(p), the power spectral density has the form:
+\begin{align}\label{eq:arp:psd}
     f(\omega)
 	&= \frac{\sigma^2}{\abs{1 - \sum_k a_k e^{-i 2 \pi \omega k}}^2}
 \end{align}
-	Argue that the power spectral density has peaks at the corresponding angles by viewing it as evaluating a function in the complex plane restricted to the unit circle (parameterized as $z = e^{i\pi\omega}$). The eigenvalues of $\mathbf{A}$ are poles of the said function.
-    \vspace{\stretch{0.5}}
+    When the eigenvalues are complex-valued, they come in conjugate pairs.
+    Argue that the power spectral density has peaks at the corresponding angles by viewing \eqref{eq:arp:psd} as evaluating a function in the complex plane restricted to the unit circle (parameterized as $z = e^{i\pi\omega}$).
+    The eigenvalues of $\mathbf{A}$ are poles of the said function.
+    \vspace{\stretch{1}}
+\newpage
     \part \label{hw:ar2_sim} \homework
 \ifMATLAB
  Use MATLAB function \texttt{eig} to obtain eigenvalues of a matrix.
@@ -476,7 +478,6 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 \fi
     %(These eigenvalues are usually called the roots of the characteristic polynomial in the field of signal processing.)
     Construct a stable AR(2) model by choosing parameters and generate time series of length $T=100,000$. Plot the sample autocorrelation function and estimated power spectral density.
-\newpage
     \part Another way of writing the AR(2) as matrix equations is,
     \begin{align}\label{eq:ar2:row}
 	X_t &= \begin{bmatrix} a_1 & a_2 \end{bmatrix}
