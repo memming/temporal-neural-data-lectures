@@ -3,7 +3,7 @@
 \newif\ifMATLAB % <-- defines \MATLABtrue and \MATLABfalse
 \MATLABfalse     % <-- set \MATLABfalse if we are in Python mode
 \newif\ifPSD % <-- power spectrum segment
-\PSDfalse
+\PSDtrue
 
 %\usepackage[T1]{fontenc}
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
@@ -30,10 +30,13 @@
 \DeclareMathOperator*{\var}{var}
 \DeclareMathOperator*{\cov}{cov}
 \newcommand{\system}[2]{\mathcal{#1}\left[ #2 \right]}
+\newcommand{\identity}{\ensuremath{\mathbb{I}}}
 
 \newcommand{\iid}{{\it i.i.d.}\xspace}
 \newcommand{\iidsample}{\stackrel{iid}{\sim}}
 \newcommand{\normalDist}{\mathcal{N}}
+\newcommand{\norm}[1]{\ensuremath{\Vert{#1}\Vert}}
+\providecommand{\abs}[1]{\lvert#1\rvert}
 \newcounter{homework}
 \newcommand{\homework}{\stepcounter{homework}\textcolor{violet}{\textbf{Homework \thehomework:}~}}
 \newcommand{\funfact}{\textbf{Fun Fact:}~}
@@ -43,10 +46,11 @@
 \pagestyle{headandfoot}
 \runningheadrule
 %\runningheader{BNB 567}{Temporal Structure in Neural Data}{Il Memming Park}
-\runningheader{INDP 2023}{Temporal Structure in Neural Data}{Il Memming Park}
+%\runningheader{INDP 2023}{Temporal Structure in Neural Data}{Il Memming Park}
+\runningheader{2024}{Temporal Structure in Neural Data}{Il Memming Park}
 
 \title{Introduction to temporal structure in neural data}
-\author{Il Memming Park, \'Abel S\'agodi}
+\author{Il Memming Park\footnote{Special thanks to \'Abel S\'agodi for the python code}}
 
 \begin{document}
 \maketitle
@@ -449,7 +453,22 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 	\end{bmatrix}
     \end{align}
 \end{tcolorbox}
-    \part \label{hw:ar2_sim} \homework In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable.
+    \part In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable. What are the eigenvalues for the AR(2)?
+    \vspace{\stretch{0.5}}
+    \part Show that thanks to the special structure of $\mathbf{A}$, roots of the characteristic polynomial for AR(p), is
+\begin{align}
+	\det ({\mathbf{A} - \lambda\identity}) &= \lambda^p - a_1 \lambda^{p-1} - \cdots - a_p = 0
+\end{align}
+    \vspace{\stretch{0.5}}
+    \part When the eigenvalues are complex-valued, they come in conjugate pairs.
+	The power spectral density has the form:
+\begin{align}
+    f(\omega)
+	&= \frac{\sigma^2}{\abs{1 - \sum_k a_k e^{-i 2 \pi \omega k}}^2}
+\end{align}
+	Argue that the power spectral density has peaks at the corresponding angles by viewing it as evaluating a function in the complex plane restricted to the unit circle (parameterized as $z = e^{i\pi\omega}$). The eigenvalues of $\mathbf{A}$ are poles of the said function.
+    \vspace{\stretch{0.5}}
+    \part \label{hw:ar2_sim} \homework
 \ifMATLAB
  Use MATLAB function \texttt{eig} to obtain eigenvalues of a matrix.
 \else
@@ -457,6 +476,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 \fi
     %(These eigenvalues are usually called the roots of the characteristic polynomial in the field of signal processing.)
     Construct a stable AR(2) model by choosing parameters and generate time series of length $T=100,000$. Plot the sample autocorrelation function and estimated power spectral density.
+\newpage
     \part Another way of writing the AR(2) as matrix equations is,
     \begin{align}\label{eq:ar2:row}
 	X_t &= \begin{bmatrix} a_1 & a_2 \end{bmatrix}
@@ -509,6 +529,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
     \vspace{\stretch{1}}
 \else
 \fi
+    \part \homework Read \citet{Ozaki2012-jb} chapters 1-3. Learn about Wiener-Khinchin theorem, aliasing effect, deterministic vs. stochastic modeling, and the ARMA.
 \end{parts}
 
 Note that AR(p) is also a \textbf{generalized linear model (GLM)\footnote{not to be confused with \emph{general} linear model!}} with Gaussian observation noise.
