@@ -50,7 +50,7 @@
 \runningheader{2024}{Temporal Structure in Neural Data}{Il Memming Park}
 
 \title{Introduction to temporal structure in neural data}
-\author{Il Memming Park\footnote{Special thanks to \'Abel S\'agodi for the python code}}
+\author{Il Memming Park\footnote{Special thanks to \'Abel S\'agodi for the python code.}}
 
 \begin{document}
 \maketitle
@@ -451,7 +451,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 	\end{bmatrix}
     \end{align}
 \end{tcolorbox}
-    \part In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1, the corresponding AR(p) model is stable. What are the eigenvalues for the AR(2)?
+    \part In general, when the \textit{eigenvalues} of $\mathbf{A}$ are of magnitude strictly less than 1 (inside the unit circle), the corresponding AR(p) model is stable. What are the eigenvalues for the AR(2)?
     \vspace{\stretch{0.5}}
     \part Generalize the matrix form representation for AR(p):
     \vspace{\stretch{1}}
@@ -466,7 +466,7 @@ The Python package scipy has the commands  \texttt{scipy.signal.welch} and  \tex
 	&= \frac{\sigma^2}{\abs{1 - \sum_k a_k e^{-i 2 \pi \omega k}}^2}
 \end{align}
     When the eigenvalues are complex-valued, they come in conjugate pairs.
-    Argue that the power spectral density has peaks at the corresponding angles by viewing \eqref{eq:arp:psd} as evaluating a function in the complex plane restricted to the unit circle (parameterized as $z = e^{i\pi\omega}$).
+    Argue that the power spectral density has peaks at the corresponding angles by viewing \eqref{eq:arp:psd} as evaluating a function in the complex plane restricted to the unit circle (parameterized as $z = e^{i2\pi\omega}$).
     The eigenvalues of $\mathbf{A}$ are poles of the said function.
     \vspace{\stretch{1}}
 \newpage
